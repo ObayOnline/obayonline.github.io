@@ -3,405 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مؤسسة المستقبل التعليمية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- SEO Meta Tags -->
+    <title>أكاديمية النخبة | التعليم المتطور في السودان</title>
+    <meta name="description" content="أكاديمية النخبة للتعليم المتطور - برامج تأسيس أكاديمي، حاسبة علمية ذكية، ومناهج تفاعلية. نحو جيل مبتكر رقمياً.">
+    <meta name="keywords" content="تعليم السودان, حاسبة علمية, معادلة تربيعية, أكاديمية النخبة">
+    <meta name="author" content="Elite Academy Team">
+    <meta name="theme-color" content="#0ea5e9">
+    
+    <!-- Open Graph للفيسبوك -->
+    <meta property="og:title" content="أكاديمية النخبة للتعليم المتطور">
+    <meta property="og:description" content="نحو جيل مبتكر رقمياً عبر مناهج تفاعلية وتقنيات حديثة">
+    <meta property="og:type" content="website">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
+        /* === نظام الألوان والمتغيرات === */
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --secondary: #1e293b;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --success: #10b981;
+            --bg: #020617;
+            --bg-secondary: #0f172a;
+            --card: rgba(30, 41, 59, 0.6);
+            --primary: #38bdf8;
+            --primary-dark: #0ea5e9;
+            --accent: #a78bfa;
+            --success: #34d399;
+            --text: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border: rgba(148, 163, 184, 0.15);
+            --shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-        * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif;}
-        body {background: var(--light); color: var(--secondary); line-height: 1.8;}
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-secondary: #ffffff;
+            --card: rgba(255, 255, 255, 0.8);
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --border: rgba(15, 23, 42, 0.1);
+            --shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
         
-        /* الناف بار */
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Alexandria', sans-serif;}
+        html {scroll-behavior: smooth; font-size: 16px;}
+        body {
+            background: var(--bg); color: var(--text); line-height: 1.8;
+            transition: background 0.3s, color 0.3s;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(167, 139, 250, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* === Loading Screen === */
+        .loader {
+            position: fixed; inset: 0; background: var(--bg); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        .loader.hide {opacity: 0; visibility: hidden;}
+        .loader-spinner {
+            width: 50px; height: 50px; border: 4px solid var(--border);
+            border-top-color: var(--primary); border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {to {transform: rotate(360deg);}}
+        
+        /* === الناف بار === */
         nav {
-            background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(20px) saturate(180%);
+            background: var(--card); border-bottom: 1px solid var(--border);
         }
         .nav-container {
-            max-width: 1200px; margin: auto; padding: 1rem 5%;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+            max-width: 1400px; margin: auto; padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center; gap: 2rem;
         }
-        .logo {font-size: 1.5rem; font-weight: 900; color: var(--primary);}
-        .logo i {margin-left: 8px;}
-        .nav-links {display: flex; gap: 2rem; list-style: none;}
+        .logo {
+            font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-actions {display: flex; align-items: center; gap: 1rem;}
+        .theme-toggle {
+            background: var(--card); border: 1px solid var(--border);
+            width: 45px; height: 45px; border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; transition: 0.3s; color: var(--text);
+        }
+        .theme-toggle:hover {border-color: var(--primary); transform: scale(1.05);}
+        .nav-links {display: flex; gap: clamp(1rem, 3vw, 2.5rem); list-style: none;}
         .nav-links a {
-            text-decoration: none; color: var(--secondary); font-weight: 500;
-            transition: 0.3s; cursor: pointer;
+            text-decoration: none; color: var(--text-secondary); font-weight: 600;
+            font-size: 1rem; transition: 0.3s; cursor: pointer; position: relative; padding: 0.5rem 0;
         }
-        .nav-links a:hover, .nav-links a.active {color: var(--primary);}
+        .nav-links a:hover, .nav-links a.active {color: var(--text);}
+        .nav-links a.active:after {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px;
+        }
         .mobile-menu {display: none; font-size: 1.5rem; cursor: pointer;}
         
-        /* الأقسام */
-        .page {display: none; animation: fadeIn 0.5s;}
-        .page.active {display: block;}
-        @keyframes fadeIn {from {opacity: 0; transform: translateY(20px);}}
+        /* === الأقسام === */
+        .page {display: none; min-height: 80vh;}
+        .page.active {display: block; animation: fadeInUp 0.6s ease;}
+        @keyframes fadeInUp {from {opacity: 0; transform: translateY(30px);}}
         
-        .container {max-width: 1200px; margin: 3rem auto; padding: 0 5%;}
+        .container {max-width: 1400px; margin: 0 auto; padding: 3rem 5%;}
         .hero {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; padding: 5rem 5%; text-align: center; border-radius: 0 0 30px 30px;
+            padding: clamp(4rem, 12vw, 8rem) 5%; text-align: center; position: relative;
         }
-        .hero h1 {font-size: 3rem; margin-bottom: 1rem;}
-        .hero p {font-size: 1.2rem; opacity: 0.9;}
+        .hero h1 {
+            font-size: clamp(2.2rem, 7vw, 5rem); margin-bottom: 1.5rem; 
+            font-weight: 900; line-height: 1.1; letter-spacing: -1px;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-size: 200% auto; animation: shine 3s linear infinite;
+        }
+        @keyframes shine {to {background-position: 200% center;}}
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--text-secondary); 
+            max-width: 800px; margin: 0 auto 2rem;
+        }
+        .hero-cta {display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;}
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem; border-radius: 14px; font-weight: 700; 
+            text-decoration: none; transition: 0.3s; display: inline-flex;
+            align-items: center; gap: 0.5rem; font-size: 1.1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+        }
+        .btn-primary:hover {transform: translateY(-3px); box-shadow: 0 15px 40px rgba(56, 189, 248, 0.5);}
+        .btn-secondary {
+            background: var(--card); border: 1px solid var(--border); color: var(--text);
+        }
+        .btn-secondary:hover {border-color: var(--primary); background: rgba(56, 189, 248, 0.1);}
         
         .section-title {
-            text-align: center; font-size: 2.5rem; margin-bottom: 3rem;
-            position: relative; padding-bottom: 1rem;
+            text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); 
+            margin-bottom: 4rem; font-weight: 900;
         }
-        .section-title:after {
-            content: ''; position: absolute; bottom: 0; right: 50%;
-            transform: translateX(50%); width: 80px; height: 4px;
-            background: var(--accent); border-radius: 2px;
-        }
+        .section-title span {color: var(--primary);}
         
-        .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;}
+        .grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); 
+            gap: 2rem;
+        }
         .card {
-            background: white; padding: 2rem; border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s;
+            background: var(--card); padding: 2.5rem; border-radius: 24px;
+            border: 1px solid var(--border); backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
         }
-        .card:hover {transform: translateY(-8px); box-shadow: 0 8px 24px rgba(0,0,0,0.12);}
-        .card i {font-size: 3rem; color: var(--primary); margin-bottom: 1rem;}
+        .card:hover {
+            transform: translateY(-12px); 
+            border-color: var(--primary); 
+            box-shadow: var(--shadow), 0 0 40px rgba(56, 189, 248, 0.2);
+        }
+        .card-icon {
+            width: 70px; height: 70px; border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: white; margin-bottom: 1.5rem;
+        }
+        .card h3 {font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;}
+        .card p {color: var(--text-secondary); line-height: 1.7;}
         
-        /* الحاسبة */
-        .calc-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;}
-        .calc-card {background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);}
-        .calc-card h3 {color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;}
-        .input-group {margin-bottom: 1rem;}
-        .input-group label {display: block; margin-bottom: 0.5rem; font-weight: 500;}
-        .input-group input {
-            width: 100%; padding: 0.8rem; border: 2px solid #e2e8f0;
-            border-radius: 8px; font-size: 1rem; transition: 0.3s;
+        /* === الحاسبة === */
+        .calc-card {
+            background: var(--card); padding: 2.5rem; border-radius: 24px; 
+            border: 1px solid var(--border); backdrop-filter: blur(20px);
         }
-        .input-group input:focus {border-color: var(--primary); outline: none;}
-        .btn {
-            background: var(--primary); color: white; border: none;
-            padding: 0.9rem 2rem; border-radius: 8px; cursor: pointer;
-            font-weight: 600; width: 100%; font-size: 1rem; transition: 0.3s;
+        .calc-card h3 {
+            color: var(--primary); margin-bottom: 2rem; font-size: 1.4rem; 
+            display: flex; align-items: center; gap: 0.7rem; font-weight: 700;
         }
-        .btn:hover {background: var(--primary-dark); transform: scale(1.02);}
-        .result {
-            margin-top: 1rem; padding: 1rem; background: #f0f9ff;
-            border-radius: 8px; border-right: 4px solid var(--primary);
-            font-weight: 600; display: none;
+        .input-group {margin-bottom: 1.5rem;}
+        .input-group label {
+            display: block; margin-bottom: 0.7rem; font-weight: 600; 
+            color: var(--text-secondary); font-size: 0.95rem;
         }
-        
-        /* نموذج التواصل */
-        .contact-form {max-width: 600px; margin: auto;}
-        textarea {width: 100%; padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px; min-height: 150px; font-family: 'Tajawal';}
-        
-        /* الفوتر */
-        footer {
-            background: var(--secondary); color: white; text-align: center;
-            padding: 2rem 5%; margin-top: 5rem;
+        .input-group input, textarea {
+            width: 100%; padding: 1.1rem; background: var(--bg-secondary);
+            border: 2px solid var(--border); border-radius: 14px; 
+            font-size: 1rem; color: var(--text); transition: 0.3s; font-family: inherit;
         }
-        
-        /* مودال الترحيب */
-        .welcome-modal {
-            display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 2000;
-        }
-        .welcome-content {
-            background: white; padding: 3rem; border-radius: 20px; text-align: center;
-            max-width: 500px; width: 90%; animation: slideUp 0.5s;
-        }
-        @keyframes slideUp {from {transform: translateY(100px); opacity: 0;}}
-        
-        @media (max-width: 768px) {
-            .nav-links {display: none; width: 100%; flex-direction: column; gap: 1rem; margin-top: 1rem;}
-            .nav-links.show {display: flex;}
-            .mobile-menu {display: block;}
-            .hero h1 {font-size: 2rem;}
-        }
-    </style>
-</head>
-<body>
-    <!-- مودال الترحيب -->
-    <div class="welcome-modal" id="welcomeModal">
-        <div class="welcome-content">
-            <h2 style="color: var(--primary); margin-bottom: 1rem;">مرحباً بك في مؤسسة المستقبل 👋</h2>
-            <p style="margin-bottom: 1.5rem;">من فضلك أدخل اسمك عشان نرحب بيك</p>
-            <div class="input-group">
-                <input type="text" id="visitorName" placeholder="اكتب اسمك هنا...">
-            </div>
-            <button class="btn" onclick="saveName()">دخول الموقع</button>
-        </div>
-    </div>
-
-    <!-- الناف بار -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo"><i class="fas fa-graduation-cap"></i> مؤسسة المستقبل</div>
-            <div class="mobile-menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links" id="navLinks">
-                <li><a class="active" onclick="showPage('home')">الرئيسية</a></li>
-                <li><a onclick="showPage('about')">من نحن</a></li>
-                <li><a onclick="showPage('projects')">أعمالنا</a></li>
-                <li><a onclick="showPage('calculator')">الحاسبة</a></li>
-                <li><a onclick="showPage('contact')">تواصل معنا</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- الصفحة الرئيسية -->
-    <div class="page active" id="home">
-        <div class="hero">
-            <h1 id="welcomeText">أهلاً وسهلاً بكم</h1>
-            <p>نحو تعليم مبتكر يصنع قادة المستقبل</p>
-        </div>
-        <div class="container">
-            <h2 class="section-title">لماذا نحن؟</h2>
-            <div class="grid">
-                <div class="card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>كادر تعليمي متميز</h3>
-                    <p>نخبة من أفضل المعلمين والخبراء في مختلف التخصصات العلمية والتربوية</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>تقنيات حديثة</h3>
-                    <p>نستخدم أحدث الوسائل التعليمية والتقنية لضمان تجربة تعلم فريدة وممتعة</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>شهادات معتمدة</h3>
-                    <p>جميع برامجنا معتمدة ومصدقة من وزارة التعليم والجهات المختصة</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة من نحن -->
-    <div class="page" id="about">
-        <div class="container">
-            <h2 class="section-title">من نحن</h2>
-            <div class="card" style="max-width: 800px; margin: auto;">
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    <strong>مؤسسة المستقبل التعليمية</strong> هي مؤسسة رائدة تأسست عام 2020 بهدف تطوير العملية التعليمية في السودان والمنطقة العربية.
-                </p>
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    <strong>رؤيتنا:</strong> أن نكون المؤسسة الأولى في تقديم حلول تعليمية مبتكرة تواكب متطلبات العصر.
-                </p>
-                <p style="font-size: 1.1rem;">
-                    <strong>رسالتنا:</strong> تمكين الطلاب من اكتساب المهارات والمعارف اللازمة لمواجهة تحديات المستقبل بثقة وإبداع.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة الأعمال -->
-    <div class="page" id="projects">
-        <div class="container">
-            <h2 class="section-title">أعمالنا وإنجازاتنا</h2>
-            <div class="grid">
-                <div class="card">
-                    <i class="fas fa-book"></i>
-                    <h3>برنامج التأسيس الأكاديمي</h3>
-                    <p>تأهيل أكثر من 500 طالب للمرحلة الجامعية بمعدلات نجاح 95%</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-flask"></i>
-                    <h3>مختبرات العلوم التفاعلية</h3>
-                    <p>إنشاء 12 مختبر علمي متكامل في مدارس ولاية الخرطوم</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-globe"></i>
-                    <h3>منصة التعلم عن بعد</h3>
-                    <p>إطلاق منصة إلكترونية تخدم 10,000 طالب في السودان والخارج</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة الحاسبة -->
-    <div class="page" id="calculator">
-        <div class="container">
-            <h2 class="section-title">الحاسبة العلمية</h2>
-            <div class="calc-grid">
-                <!-- حجم الأسطوانة -->
-                <div class="calc-card">
-                    <h3><i class="fas fa-cylinder"></i> حجم الأسطوانة</h3>
-                    <div class="input-group">
-                        <label>نصف القطر (r)</label>
-                        <input type="number" id="cylRadius" placeholder="أدخل نصف القطر">
-                    </div>
-                    <div class="input-group">
-                        <label>الارتفاع (h)</label>
-                        <input type="number" id="cylHeight" placeholder="أدخل الارتفاع">
-                    </div>
-                    <button class="btn" onclick="calcCylinder()">احسب الحجم</button>
-                    <div class="result" id="cylResult"></div>
-                </div>
-
-                <!-- مساحة الدائرة -->
-                <div class="calc-card">
-                    <h3><i class="fas fa-circle"></i> مساحة الدائرة</h3>
-                    <div class="input-group">
-                        <label>نصف القطر (r)</label>
-                        <input type="number" id="circleRadius" placeholder="أدخل نصف القطر">
-                    </div>
-                    <button class="btn" onclick="calcCircle()">احسب المساحة</button>
-                    <div class="result" id="circleResult"></div>
-                </div>
-
-                <!-- معادلة تربيعية -->
-                <div class="calc-card">
-                    <h3><i class="fas fa-superscript"></i> حل المعادلة التربيعية</h3>
-                    <p style="text-align: center; margin-bottom: 1rem; color: var(--gray);">ax² + bx + c = 0</p>
-                    <div class="input-group">
-                        <label>المعامل a</label>
-                        <input type="number" id="coefA" placeholder="أدخل قيمة a">
-                    </div>
-                    <div class="input-group">
-                        <label>المعامل b</label>
-                        <input type="number" id="coefB" placeholder="أدخل قيمة b">
-                    </div>
-                    <div class="input-group">
-                        <label>المعامل c</label>
-                        <input type="number" id="coefC" placeholder="أدخل قيمة c">
-                    </div>
-                    <button class="btn" onclick="solveQuadratic()">حل المعادلة</button>
-                    <div class="result" id="quadResult"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة التواصل -->
-    <div class="page" id="contact">
-        <div class="container">
-            <h2 class="section-title">تواصل معنا</h2>
-            <div class="card contact-form">
-                <form onsubmit="submitForm(event)">
-                    <div class="input-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" id="contactName" required>
-                    </div>
-                    <div class="input-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" id="contactEmail" required>
-                    </div>
-                    <div class="input-group">
-                        <label>الموضوع</label>
-                        <input type="text" id="contactSubject" required>
-                    </div>
-                    <div class="input-group">
-                        <label>رسالتك</label>
-                        <textarea id="contactMessage" required></textarea>
-                    </div>
-                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- الفوتر -->
-    <footer>
-        <p>© 2026 مؤسسة المستقبل التعليمية. جميع الحقوق محفوظة</p>
-        <p style="margin-top: 0.5rem;">صمم بواسطة طلاب المستقبل | <i class="fas fa-heart" style="color: var(--accent);"></i></p>
-    </footer>
-
-    <script>
-        // الترحيب بالاسم
-        function saveName() {
-            const name = document.getElementById('visitorName').value.trim();
-            if(name) {
-                localStorage.setItem('visitorName', name);
-                document.getElementById('welcomeModal').style.display = 'none';
-                document.getElementById('welcomeText').textContent = `أهلاً وسهلاً ${name}`;
-            } else {
-                alert('من فضلك أدخل اسمك');
-            }
-        }
-        
-        window.onload = function() {
-            const savedName = localStorage.getItem('visitorName');
-            if(savedName) {
-                document.getElementById('welcomeModal').style.display = 'none';
-                document.getElementById('welcomeText').textContent = `أهلاً وسهلاً ${savedName}`;
-            }
-        }
-
-        // التنقل بين الصفحات
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            event.target.classList.add('active');
-            document.getElementById('navLinks').classList.remove('show');
-            window.scrollTo(0, 0);
-        }
-
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('show');
-        }
-
-        // الحاسبات
-        function calcCylinder() {
-            const r = parseFloat(document.getElementById('cylRadius').value);
-            const h = parseFloat(document.getElementById('cylHeight').value);
-            const result = document.getElementById('cylResult');
-            if(r > 0 && h > 0) {
-                const volume = Math.PI * r * r * h;
-                result.textContent = `الحجم = ${volume.toFixed(2)} وحدة مكعبة`;
-                result.style.display = 'block';
-            } else {
-                alert('أدخل قيم صحيحة موجبة');
-            }
-        }
-
-        function calcCircle() {
-            const r = parseFloat(document.getElementById('circleRadius').value);
-            const result = document.getElementById('circleResult');
-            if(r > 0) {
-                const area = Math.PI * r * r;
-                result.textContent = `المساحة = ${area.toFixed(2)} وحدة مربعة`;
-                result.style.display = 'block';
-            } else {
-                alert('أدخل قيمة صحيحة موجبة');
-            }
-        }
-
-        function solveQuadratic() {
-            const a = parseFloat(document.getElementById('coefA').value);
-            const b = parseFloat(document.getElementById('coefB').value);
-            const c = parseFloat(document.getElementById('coefC').value);
-            const result = document.getElementById('quadResult');
-            
-            if(isNaN(a) || isNaN(b) || isNaN(c)) {
-                alert('أدخل جميع المعاملات');
-                return;
-            }
-            
-            const discriminant = b * b - 4 * a * c;
-            
-            if(discriminant > 0) {
-                const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
-                const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-                result.textContent = `الحلول: س₁ = ${x1.toFixed(2)} ، س₂ = ${x2.toFixed(2)}`;
-            } else if(discriminant === 0) {
-                const x = -b / (2 * a);
-                result.textContent = `حل وحيد: س = ${x.toFixed(2)}`;
-            } else {
-                result.textContent = 'لا يوجد حلول حقيقية';
-            }
-            result.style.display = 'block';
-        }
-
-        // نموذج التواصل
-        function submitForm(e) {
-            e.preventDefault();
-            alert('تم استلام رسالتك بنجاح! سنتواصل معك قريباً ✅');
-            document.getElementById('contactName').value = '';
-            document.getElementById('contactEmail').value = '';
-            document.getElementById('contactSubject').value = '';
-            document.getElementById('contactMessage').value = '';
-        }
-    </script>
-</body>
-                </html>
+        .input-group input:focus, textarea:focus {
+            border-color: var(--primary); outline: none; 
+            box-shadow: 0 0 0 4px rgba(56, 189,
