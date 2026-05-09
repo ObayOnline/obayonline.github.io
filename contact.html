@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية النخبة - تواصل معنا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-atom"></i> أكاديمية النخبة</div>
+            <div class="mobile-menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">عن الأكاديمية</a></li>
+                <li><a href="projects.html">إنجازاتنا</a></li>
+                <li><a href="calculator.html">الحاسبة الذكية</a></li>
+                <li><a href="contact.html" class="active">تواصل</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="section-title">تواصل معنا</h2>
+        <div style="max-width: 600px; margin: auto;">
+            <div class="card">
+                <form onsubmit="submitForm(event)">
+                    <div class="input-group"><label>الاسم الكامل</label><input type="text" required></div>
+                    <div class="input-group"><label>البريد الإلكتروني</label><input type="email" required></div>
+                    <div class="input-group"><label>رسالتك</label><textarea rows="5" required></textarea></div>
+                    <button type="submit" class="btn">إرسال الرسالة <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+            <div class="grid" style="margin-top: 2rem;">
+                <div class="card" style="text-align: center;"><i class="fas fa-phone"></i><h3>اتصل بنا</h3>
