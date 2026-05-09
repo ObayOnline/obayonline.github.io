@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية النخبة - إنجازاتنا</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>إنجازاتنا - أكاديمية النخبة</title>
+    <style>
+        body{background:#0f172a;color:#fff;font-family:Arial;text-align:center;margin:0;padding:0}
+        nav{background:#1e293b;padding:15px;margin-bottom:30px}
+        .logo{font-size:24px;font-weight:bold;color:#ec4899}
+        .nav{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:10px}
+        .nav a{color:#06b6d4;text-decoration:none;padding:8px 15px;background:rgba(6,182,212,0.1);border-radius:20px}
+        .nav a.active{background:linear-gradient(45deg,#6d28d9,#ec4899);color:#fff}
+        h1{color:#06b6d4;font-size:32px;margin:20px 0}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:0 20px}
+        .card{background:#1e293b;padding:20px;border-radius:10px;border:1px solid #ec4899}
+        .card h3{color:#ec4899;margin:10px 0}
+        .icon{font-size:40px;color:#06b6d4;margin-bottom:10px}
+    </style>
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <div class="logo"><i class="fas fa-atom"></i> أكاديمية النخبة</div>
-            <div class="mobile-menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="about.html">عن الأكاديمية</a></li>
-                <li><a href="projects.html" class="active">إنجازاتنا</a></li>
-                <li><a href="calculator.html">الحاسبة الذكية</a></li>
-                <li><a href="contact.html">تواصل</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <h2 class="section-title">أبرز إنجازاتنا</h2>
-        <div class="grid">
-            <div class="card"><i class="fas fa-medal"></i><h3>أولمبياد الرياضيات</h3><p>تدريب 3 طلاب حصلوا على ميداليات ذهبية في الأولمبياد الدولي للرياضيات 2025</p></div>
-            <div class="card"><i class="fas fa-mobile-screen"></i><h3>تطبيق "ذكي"</h3><p>إطلاق تطبيق تعليمي تفاعلي وصل لـ 50 ألف تحميل في 6 أشهر</p></div>
-            <div class="card"><i class="fas fa
+        <div class="logo">أكاديمية النخبة</div>
+        <div class="nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">عن الأكاديمية</a>
+            <a href="projects.html" class="active">إنجازاتنا</
