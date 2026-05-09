@@ -9,160 +9,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800&display=swap');
-        :root {
-            --primary: #6d28d9;
-            --secondary: #ec4899;
-            --accent: #06b6d4;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --glass: rgba(255, 255, 255, 0.1);
-        }
+        :root { --primary: #6d28d9; --secondary: #ec4899; --accent: #06b6d4; --dark: #0f172a; --light: #f8fafc; --card-bg: rgba(30, 41, 59, 0.8); --glass: rgba(255, 255, 255, 0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Alexandria', sans-serif; }
-        body { 
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
-            color: var(--light); 
-            line-height: 1.7; 
-            min-height: 100vh;
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: var(--light); line-height: 1.7; min-height: 100vh; }
+        nav { background: var(--card-bg); backdrop-filter: blur(10px); padding: 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--glass); }
+        .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(45deg, var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--light); text-decoration: none; font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; }
+        .nav-links a:hover, .nav-links a.active { background: var(--glass); color: var(--accent); }
+        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; }
+        .hero { text-align: center; padding: 6rem 1rem; background: radial-gradient(circle at top, rgba(109, 40, 217, 0.2), transparent); min-height: 60vh; display: flex; align-items: center; justify-content: center; }
+        .hero-content { max-width: 700px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; animation: fadeInUp 1s ease; }
+        .hero h1 span { background: linear-gradient(45deg, var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.3rem; margin: 1.5rem auto; opacity: 0.9; animation: fadeInUp 1s ease 0.3s both; }
+        
+        /* فورم الاسم داخل الهيرو */
+        .name-form { 
+            background: var(--card-bg); border: 1px solid var(--accent); 
+            padding: 2rem; border-radius: 20px; margin: 2rem auto 0; 
+            max-width: 400px; animation: fadeInUp 1s ease 0.6s both;
         }
-        nav { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(10px); 
-            padding: 1rem; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100;
-            border-bottom: 1px solid var(--glass);
+        .name-form h3 { margin-bottom: 1rem; color: var(--accent); }
+        .name-form input { 
+            width: 100%; padding: 1rem; background: var(--glass); 
+            border: 1px solid var(--glass); border-radius: 50px; 
+            color: var(--light); font-size: 1rem; text-align: center; margin-bottom: 1rem;
         }
-        .nav-container { 
-            max-width: 1200px; 
-            margin: auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+        .name-form input:focus { outline: none; border-color: var(--accent); }
+        .btn-small { 
+            background: linear-gradient(45deg, var(--primary), var(--secondary)); 
+            color: white; border: none; padding: 0.8rem 2rem; 
+            border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s;
         }
-        .logo { 
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            background: linear-gradient(45deg, var(--secondary), var(--accent)); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        .nav-links { 
-            display: flex; 
-            list-style: none; 
-            gap: 2rem; 
-        }
-        .nav-links a { 
-            color: var(--light); 
-            text-decoration: none; 
-            font-weight: 600; 
-            transition: 0.3s; 
-            padding: 0.5rem 1rem; 
-            border-radius: 8px;
-        }
-        .nav-links a:hover, .nav-links a.active { 
-            background: var(--glass); 
-            color: var(--accent); 
-        }
-        .mobile-menu { 
-            display: none; 
-            font-size: 1.5rem; 
-            cursor: pointer; 
-        }
-        .hero { 
-            text-align: center; 
-            padding: 5rem 1rem; 
-            background: radial-gradient(circle at top, rgba(109, 40, 217, 0.2), transparent);
-        }
-        .hero h1 { 
-            font-size: 2.8rem; 
-            margin-bottom: 1rem; 
-            font-weight: 800;
-        }
-        .hero h1 span { 
-            background: linear-gradient(45deg, var(--secondary), var(--accent)); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        .hero p { 
-            font-size: 1.2rem; 
-            max-width: 600px; 
-            margin: auto; 
-            opacity: 0.9; 
-        }
-        .container { 
-            max-width: 1200px; 
-            margin: 3rem auto; 
-            padding: 0 1rem; 
-        }
-        .section-title { 
-            text-align: center; 
-            font-size: 2.2rem; 
-            margin-bottom: 3rem; 
-            font-weight: 800;
-        }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 2rem; 
-        }
-        .card { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(10px); 
-            border: 1px solid var(--glass); 
-            padding: 2rem; 
-            border-radius: 16px; 
-            transition: 0.3s; 
-        }
-        .card:hover { 
-            transform: translateY(-8px); 
-            border-color: var(--accent); 
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
-        }
-        .card i { 
-            font-size: 2.5rem; 
-            color: var(--accent); 
-            margin-bottom: 1rem; 
-        }
-        .card h3 { 
-            font-size: 1.4rem; 
-            margin-bottom: 1rem; 
-            color: var(--secondary); 
-        }
-        footer { 
-            text-align: center; 
-            padding: 3rem 1rem; 
-            margin-top: 4rem; 
-            border-top: 1px solid var(--glass); 
-            opacity: 0.7; 
-        }
+        .btn-small:hover { transform: scale(1.05); }
+        
+        .container { max-width: 1200px; margin: 3rem auto; padding: 0 1rem; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 3rem; font-weight: 800; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass); padding: 2rem; border-radius: 16px; transition: 0.3s; }
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2); }
+        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--secondary); }
+        footer { text-align: center; padding: 3rem 1rem; margin-top: 4rem; border-top: 1px solid var(--glass); opacity: 0.7; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) {
-            .nav-links { 
-                display: none; 
-                flex-direction: column; 
-                position: absolute; 
-                top: 100%; 
-                right: 1rem; 
-                left: 1rem; 
-                background: var(--dark); 
-                padding: 1rem; 
-                border-radius: 12px; 
-                gap: 0; 
-            }
-            .nav-links.show { 
-                display: flex; 
-            }
-            .nav-links a { 
-                padding: 1rem; 
-                border-bottom: 1px solid var(--glass); 
-            }
-            .mobile-menu { 
-                display: block; 
-            }
-            .hero h1 { 
-                font-size: 2rem; 
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; right: 1rem; left: 1rem; background: var(--dark); padding: 1rem; border-radius: 12px; gap: 0; }
+            .nav-links.show { display: flex; }
+            .nav-links a { padding: 1rem; border-bottom: 1px solid var(--glass); }
+            .mobile-menu { display: block; }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -172,42 +70,4 @@
             <div class="logo"><i class="fas fa-atom"></i> أكاديمية النخبة</div>
             <div class="mobile-menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="about.html">عن الأكاديمية</a></li>
-                <li><a href="projects.html">إنجازاتنا</a></li>
-                <li><a href="calculator.html">الحاسبة الذكية</a></li>
-                <li><a href="contact.html">تواصل</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="hero">
-        <h1 id="welcomeText">نصنع <span>قادة المستقبل</span> اليوم</h1>
-        <p>أكاديمية متخصصة في بناء العقول وتطوير المهارات عبر مناهج عالمية وتقنيات تعليم حديثة</p>
-    </div>
-    <div class="container">
-        <h2 class="section-title">مميزاتنا التنافسية</h2>
-        <div class="grid">
-            <div class="card"><i class="fas fa-brain"></i><h3>مناهج تفاعلية</h3><p>نعتمد التعلم بالمشاريع والتجارب العملية بدل التلقين التقليدي</p></div>
-            <div class="card"><i class="fas fa-rocket"></i><h3>تسريع الإنجاز</h3><p>برامج مكثفة تضمن إتقان المهارات في وقت قياسي بجودة عالية</p></div>
-            <div class="card"><i class="fas fa-users-gear"></i><h3>متابعة فردية</h3><p>مرشد أكاديمي لكل 5 طلاب لضمان أفضل النتائج التعليمية</p></div>
-        </div>
-    </div>
-    <footer><p>© 2026 أكاديمية النخبة للتعليم المتطور</p></footer>
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('show');
-        }
-        window.onload = function() {
-            let userName = localStorage.getItem('userName');
-            if (!userName) {
-                userName = prompt('مرحباً بك! اكتب اسمك:');
-                if (userName) localStorage.setItem('userName', userName);
-            }
-            if (userName) {
-                const welcomeEl = document.getElementById('welcomeText');
-                if (welcomeEl) welcomeEl.innerHTML = `أهلاً ${userName}، <span>نصنع قادة المستقبل</span> اليوم`;
-            }
-        };
-    </script>
-</body>
-</html>
+                <li><a href="index.html
