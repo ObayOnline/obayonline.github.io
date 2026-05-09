@@ -3,146 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام إدارة المكتبة - نهلة يوسف</title>
-    
+    <title>مكتبة النور | نظام إدارة احترافي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-color: #f4f7f6;
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0f172a;
+            --success: #10b981;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --gray: #64748b;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif;}
+        body {background: var(--light); color: var(--secondary);}
+        
+        /* الهيدر */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            width: 100%;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; padding: 1rem 5%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        .container {
-            width: 90%;
-            max-width: 800px;
-            background: white;
-            padding: 30px;
-            margin-top: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        .nav {display: flex; justify-content: space-between; align-items: center;}
+        .logo {font-size: 1.8rem; font-weight: 700;}
+        .logo i {margin-left: 10px;}
+        
+        /* المحتوى */
+        .container {max-width: 1200px; margin: 2rem auto; padding: 0 5%;}
+        .dashboard {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;}
+        .card {
+            background: white; padding: 1.5rem; border-radius: 12px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: 0.3s;
         }
-
-        .form-group {
-            margin-bottom: 15px;
+        .card:hover {transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.12);}
+        .card h3 {color: var(--gray); font-size: 1rem; margin-bottom: 0.5rem;}
+        .card .number {font-size: 2rem; font-weight: 700; color: var(--primary);}
+        .card i {font-size: 2.5rem; color: var(--primary); opacity: 0.3; float: left;}
+        
+        /* الجدول */
+        .table-section {background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
+        .table-header {display: flex; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;}
+        .search-box {position: relative; flex: 1; min-width: 250px;}
+        .search-box input {
+            width: 100%; padding: 0.8rem 2.5rem 0.8rem 1rem; 
+            border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;
         }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box; /* لضمان عدم خروج الإدخال عن الحواف */
+        .search-box i {position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray);}
+        .btn {
+            background: var(--primary); color: white; border: none; 
+            padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; 
+            font-weight: 600; transition: 0.3s; font-size: 1rem;
         }
-
-        button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition: 0.3s;
+        .btn:hover {background: var(--primary-dark);}
+        .btn i {margin-left: 8px;}
+        
+        table {width: 100%; border-collapse: collapse; margin-top: 1rem;}
+        th, td {padding: 1rem; text-align: right; border-bottom: 1px solid #e2e8f0;}
+        th {background: #f1f5f9; font-weight: 700; color: var(--secondary);}
+        tr:hover {background: #f8fafc;}
+        .status {padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;}
+        .available {background: #d1fae5; color: #065f46;}
+        .borrowed {background: #fee2e2; color: #991b1b;}
+        .action-btn {background: none; border: none; cursor: pointer; font-size: 1.1rem; margin: 0 0.3rem;}
+        .edit {color: var(--primary);}
+        .delete {color: var(--danger);}
+        
+        /* المودال */
+        .modal {display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;}
+        .modal-content {
+            background: white; padding: 2rem; border-radius: 12px; 
+            width: 90%; max-width: 500px; animation: slideDown 0.3s;
         }
-
-        button:hover {
-            background-color: #2980b9;
+        @keyframes slideDown {from {transform: translateY(-50px); opacity: 0;}}
+        .form-group {margin-bottom: 1.2rem;}
+        .form-group label {display: block; margin-bottom: 0.5rem; font-weight: 600;}
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.8rem; border: 2px solid #e2e8f0; 
+            border-radius: 8px; font-size: 1rem;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-        }
-
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            text-align: right;
-        }
-
-        th {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-        }
-
-        footer {
-            margin-top: 40px;
-            color: #7f8c8d;
-            font-size: 14px;
+        .modal-actions {display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;}
+        .btn-secondary {background: var(--gray);}
+        
+        @media (max-width: 768px) {
+            .dashboard {grid-template-columns: 1fr;}
+            table {font-size: 0.9rem;}
+            th, td {padding: 0.7rem 0.5rem;}
         }
     </style>
 </head>
 <body>
-
     <header>
-        <h1>نظام إدارة المكتبة الذكي</h1>
-        <p>المطور: نهلة يوسف</p>
+        <div class="nav">
+            <div class="logo"><i class="fas fa-book-open"></i> مكتبة النور</div>
+            <div id="date"></div>
+        </div>
     </header>
 
     <div class="container">
-        <h2>إضافة كتاب جديد</h2>
-        <form>
-            <div class="form-group">
-                <label>عنوان الكتاب:</label>
-                <input type="text" placeholder="مثلاً: تعلم البرمجة ببساطة">
+        <div class="dashboard">
+            <div class="card">
+                <i class="fas fa-books"></i>
+                <h3>إجمالي الكتب</h3>
+                <div class="number" id="totalBooks">0</div>
             </div>
-            <div class="form-group">
-                <label>اسم المؤلف:</label>
-                <input type="text" placeholder="اسم الكاتب">
+            <div class="card">
+                <i class="fas fa-book-reader"></i>
+                <h3>الكتب المستعارة</h3>
+                <div class="number" id="borrowedBooks">0</div>
             </div>
-            <button type="button" onclick="alert('تم حفظ البيانات بنجاح!')">حفظ الكتاب</button>
-        </form>
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>المشتركين</h3>
+                <div class="number" id="members">24</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock"></i>
+                <h3>متأخرات</h3>
+                <div class="number" id="lateBooks">0</div>
+            </div>
+        </div>
 
-        <hr>
-
-        <h2>الكتب المتوفرة</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>م</th>
-                    <th>عنوان الكتاب</th>
-                    <th>المؤلف</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>أساسيات بايثون</td>
-                    <td>نهلة يوسف</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>تطوير الويب</td>
-                    <td>حيدر يوسف</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-section">
+            <div class="table-header">
+                <h2>قائمة الكتب</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="ابحث عن كتاب...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button class="btn" onclick="openModal()"><i class="fas fa-plus"></i> إضافة كتاب</button>
+                </div>
+            </div>
+            
+            <table id="booksTable">
+                <thead>
+                    <tr>
+                        <th>اسم الكتاب</th>
+                        <th>المؤلف</th>
+                        <th>التصنيف</th>
+                        <th>الحالة</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="booksList"></tbody>
+            </table>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2026 جميع الحقوق محفوظة لنهلة يوسف</p>
-    </footer>
+    <!-- مودال إضافة كتاب -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 1.5rem;">إضافة كتاب جديد</h2>
+            <div class="form-group">
+                <label>اسم الكتاب</label>
+                <input type="text" id="bookName" placeholder="أدخل اسم الكتاب">
+            </div>
+            <div class="form-group">
+                <label>المؤلف</label>
+                <input type="text" id="bookAuthor" placeholder="أدخل اسم المؤلف">
+            </div>
+            <div class="form-group">
+                <label>التصنيف</label>
+                <select id="bookCategory">
+                    <option>رواية</option>
+                    <option>علمي</option>
+                    <option>تاريخ</option>
+                    <option>ديني</option>
+                    <option>تطوير ذات</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">إلغاء</button>
+                <button class="btn" onclick="addBook()">حفظ الكتاب</button>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        let books = JSON.parse(localStorage.getItem('books')) || [
+            {id: 1, name: "مقدمة ابن خلدون", author: "ابن خلدون", category: "تاريخ", status: "available"},
+            {id: 2, name: "الأب الغني الأب الفقير", author: "روبرت كيوساكي", category: "تطوير ذات", status: "borrowed"},
+            {id: 3, name: "فن اللامبالاة", author: "مارك مانسون", category: "تطوير ذات", status: "available"}
+        ];
+
+        function updateDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = new Date().toLocaleDateString('ar-SA', options);
+        }
+
+        function renderBooks() {
+            const tbody = document.getElementById('booksList');
+            tbody.innerHTML = '';
+            books.forEach(book => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${book.name}</td>
+                        <td>${book.author}</td>
+                        <td>${book.category}</td>
+                        <td><span class="status ${book.status}">${book.status === 'available' ? 'متاح' : 'مُستعار'}</span></td>
+                        <td>
+                            <button class="action-btn edit" onclick="toggleStatus(${book.id})"><i class="fas fa-exchange-alt"></i></button>
+                            <button class="action-btn delete" onclick="deleteBook(${book.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+            updateStats();
+            localStorage.setItem('books', JSON.stringify(books));
+        }
+
+        function updateStats() {
+            document.getElementById('totalBooks').textContent = books.length;
+            document.getElementById('borrowedBooks').textContent = books.filter(b => b.status === 'borrowed').length;
+        }
+
+        function openModal() { document.getElementById('bookModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('bookModal').style.display = 'none'; }
+
+        function addBook() {
+            const name = document.getElementById('bookName').value;
+            const author = document.getElementById('bookAuthor').value;
+            const category = document.getElementById('bookCategory').value;
+            if(!name || !author) return alert('املأ كل الحقول');
+            
+            books.push({id: Date.now(), name, author, category, status: 'available'});
+            renderBooks(); closeModal();
+            document.getElementById('bookName').value = '';
+            document.getElementById('bookAuthor').value = '';
+        }
+
+        function deleteBook(id) {
+            if(confirm('متأكد عايز تحذف الكتاب؟')) {
+                books = books.filter(b => b.id !== id);
+                renderBooks();
+            }
+        }
+
+        function toggleStatus(id) {
+            const book = books.find(b => b.id === id);
+            book.status = book.status === 'available' ? 'borrowed' : 'available';
+            renderBooks();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const search = e.target.value.toLowerCase();
+            const filtered = books.filter(b => 
+                b.name.toLowerCase().includes(search) || 
+                b.author.toLowerCase().includes(search)
+            );
+            const tbody = document.getElementById('booksList');
+            tbody.innerHTML = '';
+            filtered.forEach(book => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${book.name}</td>
+                        <td>${book.author}</td>
+                        <td>${book.category}</td>
+                        <td><span class="status ${book.status}">${book.status === 'available' ? 'متاح' : 'مُستعار'}</span></td>
+                        <td>
+                            <button class="action-btn edit" onclick="toggleStatus(${book.id})"><i class="fas fa-exchange-alt"></i></button>
+                            <button class="action-btn delete" onclick="deleteBook(${book.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+
+        updateDate();
+        renderBooks();
+    </script>
 </body>
 </html>
