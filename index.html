@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المكتبة - نهلة يوسف</title>
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box; /* لضمان عدم خروج الإدخال عن الحواف */
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            text-align: right;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>نظام إدارة المكتبة الذكي</h1>
+        <p>المطور: نهلة يوسف</p>
+    </header>
+
+    <div class="container">
+        <h2>إضافة كتاب جديد</h2>
+        <form>
+            <div class="form-group">
+                <label>عنوان الكتاب:</label>
+                <input type="text" placeholder="مثلاً: تعلم البرمجة ببساطة">
+            </div>
+            <div class="form-group">
+                <label>اسم المؤلف:</label>
+                <input type="text" placeholder="اسم الكاتب">
+            </div>
+            <button type="button" onclick="alert('تم حفظ البيانات بنجاح!')">حفظ الكتاب</button>
+        </form>
+
+        <hr>
+
+        <h2>الكتب المتوفرة</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>م</th>
+                    <th>عنوان الكتاب</th>
+                    <th>المؤلف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>أساسيات بايثون</td>
+                    <td>نهلة يوسف</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>تطوير الويب</td>
+                    <td>حيدر يوسف</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>© 2026 جميع الحقوق محفوظة لنهلة يوسف</p>
+    </footer>
+
+</body>
+</html>
