@@ -2,72 +2,67 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية النخبة - الرئيسية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>أكاديمية النخبة</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800&display=swap');
-        :root { --primary: #6d28d9; --secondary: #ec4899; --accent: #06b6d4; --dark: #0f172a; --light: #f8fafc; --card-bg: rgba(30, 41, 59, 0.8); --glass: rgba(255, 255, 255, 0.1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Alexandria', sans-serif; }
-        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: var(--light); line-height: 1.7; min-height: 100vh; }
-        nav { background: var(--card-bg); backdrop-filter: blur(10px); padding: 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--glass); }
-        .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(45deg, var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: var(--light); text-decoration: none; font-weight: 600; transition: 0.3s; padding: 0.5rem 1rem; border-radius: 8px; }
-        .nav-links a:hover, .nav-links a.active { background: var(--glass); color: var(--accent); }
-        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; }
-        .hero { text-align: center; padding: 6rem 1rem; background: radial-gradient(circle at top, rgba(109, 40, 217, 0.2), transparent); min-height: 60vh; display: flex; align-items: center; justify-content: center; }
-        .hero-content { max-width: 700px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; animation: fadeInUp 1s ease; }
-        .hero h1 span { background: linear-gradient(45deg, var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.3rem; margin: 1.5rem auto; opacity: 0.9; animation: fadeInUp 1s ease 0.3s both; }
-        
-        /* فورم الاسم داخل الهيرو */
-        .name-form { 
-            background: var(--card-bg); border: 1px solid var(--accent); 
-            padding: 2rem; border-radius: 20px; margin: 2rem auto 0; 
-            max-width: 400px; animation: fadeInUp 1s ease 0.6s both;
-        }
-        .name-form h3 { margin-bottom: 1rem; color: var(--accent); }
-        .name-form input { 
-            width: 100%; padding: 1rem; background: var(--glass); 
-            border: 1px solid var(--glass); border-radius: 50px; 
-            color: var(--light); font-size: 1rem; text-align: center; margin-bottom: 1rem;
-        }
-        .name-form input:focus { outline: none; border-color: var(--accent); }
-        .btn-small { 
-            background: linear-gradient(45deg, var(--primary), var(--secondary)); 
-            color: white; border: none; padding: 0.8rem 2rem; 
-            border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s;
-        }
-        .btn-small:hover { transform: scale(1.05); }
-        
-        .container { max-width: 1200px; margin: 3rem auto; padding: 0 1rem; }
-        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 3rem; font-weight: 800; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass); padding: 2rem; border-radius: 16px; transition: 0.3s; }
-        .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2); }
-        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--secondary); }
-        footer { text-align: center; padding: 3rem 1rem; margin-top: 4rem; border-top: 1px solid var(--glass); opacity: 0.7; }
-        
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; right: 1rem; left: 1rem; background: var(--dark); padding: 1rem; border-radius: 12px; gap: 0; }
-            .nav-links.show { display: flex; }
-            .nav-links a { padding: 1rem; border-bottom: 1px solid var(--glass); }
-            .mobile-menu { display: block; }
-            .hero h1 { font-size: 2.2rem; }
-        }
+        body{background:#0f172a;color:#fff;font-family:Arial;text-align:center;margin:0;padding:20px}
+        nav{background:#1e293b;padding:15px;margin:-20px -20px 30px;border-radius:0 0 10px 10px}
+        .logo{font-size:24px;font-weight:bold;color:#ec4899}
+        .nav{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:10px}
+        .nav a{color:#06b6d4;text-decoration:none;padding:8px 15px;background:rgba(6,182,212,0.1);border-radius:20px}
+        h1{color:#06b6d4;font-size:32px;margin:30px 0 15px}
+        .card{background:#1e293b;padding:20px;margin:20px auto;max-width:500px;border-radius:10px;border:1px solid #ec4899}
+        input,button{padding:12px;border-radius:25px;border:none;margin:5px}
+        input{background:#0f172a;color:#fff;border:1px solid #06b6d4;text-align:center}
+        button{background:linear-gradient(45deg,#6d28d9,#ec4899);color:#fff;font-weight:bold}
+        #nameBox{margin:20px auto;max-width:300px}
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <div class="logo"><i class="fas fa-atom"></i> أكاديمية النخبة</div>
-            <div class="mobile-menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html
+        <div class="logo">أكاديمية النخبة</div>
+        <div class="nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">عن الأكاديمية</a>
+            <a href="projects.html">إنجازاتنا</a>
+            <a href="calculator.html">الحاسبة</a>
+            <a href="contact.html">تواصل</a>
+        </div>
+    </nav>
+    
+    <h1 id="welcome">أهلاً بك في أكاديمية النخبة</h1>
+    <p id="desc">نصنع قادة المستقبل عبر مناهج عالمية</p>
+    
+    <div id="nameBox">
+        <input type="text" id="userName" placeholder="اكتب اسمك هنا">
+        <button onclick="saveName()">ابدأ</button>
+    </div>
+    
+    <div class="card">
+        <h3>مناهج تفاعلية</h3>
+        <p>نعتمد التعلم بالمشاريع والتجارب العملية</p>
+    </div>
+    
+    <div class="card">
+        <h3>تسريع الإنجاز</h3>
+        <p>برامج مكثفة تضمن إتقان المهارات في وقت قياسي</p>
+    </div>
+
+    <script>
+        function saveName(){
+            var name = document.getElementById('userName').value;
+            if(name){
+                localStorage.setItem('name',name);
+                showName(name);
+            }
+        }
+        function showName(name){
+            document.getElementById('welcome').innerHTML = 'أهلاً ' + name + ' في أكاديمية النخبة';
+            document.getElementById('desc').innerHTML = 'سعداء بانضمامك لنا يا ' + name;
+            document.getElementById('nameBox').style.display = 'none';
+        }
+        var saved = localStorage.getItem('name');
+        if(saved){ showName(saved); }
+    </script>
+</body>
+</html>
