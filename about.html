@@ -3,18 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية النخبة - عن الأكاديمية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>عن الأكاديمية - أكاديمية النخبة</title>
+    <style>
+        body{background:#0f172a;color:#fff;font-family:Arial;text-align:center;margin:0;padding:0}
+        nav{background:#1e293b;padding:15px;margin-bottom:30px}
+        .logo{font-size:24px;font-weight:bold;color:#ec4899}
+        .nav{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:10px}
+        .nav a{color:#06b6d4;text-decoration:none;padding:8px 15px;background:rgba(6,182,212,0.1);border-radius:20px}
+        .nav a.active{background:linear-gradient(45deg,#6d28d9,#ec4899);color:#fff}
+        h1{color:#06b6d4;font-size:32px;margin:20px 0}
+        .card{background:#1e293b;padding:20px;margin:20px auto;max-width:600px;border-radius:10px;border:1px solid #ec4899;text-align:right}
+        .card h3{color:#ec4899;margin-top:0;text-align:center}
+        .list{text-align:right;line-height:2}
+    </style>
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <div class="logo"><i class="fas fa-atom"></i> أكاديمية النخبة</div>
-            <div class="mobile-menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="about.html" class="active">عن الأكاديمية</a></li>
-                <li><a href="projects.html">إنجازاتنا</a></li>
-               
+        <div class="logo">أكاديمية النخبة</div>
+        <div class="nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html" class="active">عن الأكاديمية</a>
+            <a href="projects.html">إنجازاتنا</a>
+            <a href="calculator.html">الحاسبة</a>
+            <a href="contact.html">تواصل</a>
+        </div>
+    </nav>
+    
+    <h1>من نحن</h1>
+    
+    <div class="card">
+        <h3>رؤيتنا</h3>
+        <p>أن نكون المؤسسة التعليمية الرائدة في صناعة قادة المستقبل عبر مناهج عالمية وتقنيات تعليم حديثة تُلهم العقول وتبني المهارات.</p>
+    </div>
+    
+    <div class="card">
+        <h3>رسالتنا</h3>
+        <p>نقدم تعليم نوعي يركز على الفهم العميق والتطبيق العملي، ونؤمن بأن كل طالب لديه موهبة فريدة نعمل على اكتشافها وتنميتها.</p>
+    </div>
+    
+    <div class="card">
+        <h3>قيمنا</h3>
+        <div class="list">
+            1. <b>الإتقان:</b> نسعى للجودة في كل ما نقدمه<br>
+            2. <b>الابتكار:</b> نواكب أحدث طرق التعليم العالمية<br>
+            3. <b>النزاهة:</b> الشفافية والصدق أساس تعاملنا<br>
+            4. <b>التمكين:</b> نبني الثقة في قدرات طلابنا
+        </div>
+    </div>
+</body>
+</html>
